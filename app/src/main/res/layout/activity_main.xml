@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.antman.robotcontroller.MainActivity"
+    android:background="@android:color/holo_blue_light">
+
+    <com.antman.robotcontroller.JoystickView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/joystickLeft"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true" />
+
+    <com.antman.robotcontroller.JoystickView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:id="@+id/joystickRight"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="XMove"
+        android:id="@+id/textViewXMove"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="YMove"
+        android:id="@+id/textViewYMove"
+        android:layout_below="@+id/textViewXMove"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="arg1"
+        android:id="@+id/textViewArg1"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="arg2"
+        android:id="@+id/textViewArg2"
+        android:layout_alignTop="@+id/textViewYMove"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
