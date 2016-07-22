@@ -61,4 +61,46 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
 
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Rotate Body Mode"
+        android:id="@+id/checkBoxPhoneAngle"
+        android:checked="false"
+        android:layout_alignBottom="@+id/joystickLeft"
+        android:layout_centerHorizontal="true" />
+
+    <com.antman.robotcontroller.VerticalSeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekbarZHeight"
+        android:layout_toLeftOf="@+id/joystickRight"
+        android:layout_above="@+id/checkBoxPhoneAngle"
+        android:max="70"
+        android:progress="35"
+        android:layout_below="@+id/textViewArg2"
+        android:indeterminate="false" />
+
+    <com.antman.robotcontroller.VerticalSeekBar
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/seekbarLiftHeight"
+        android:layout_above="@+id/checkBoxPhoneAngle"
+        android:layout_toRightOf="@+id/joystickLeft"
+        android:layout_toEndOf="@+id/joystickLeft"
+        android:layout_below="@+id/textViewYMove"
+        android:progress="0"
+        android:max="30"
+        android:indeterminate="false" />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Translate Body Mode"
+        android:id="@+id/checkBoxTranslateBody"
+        android:checked="false"
+        android:layout_above="@+id/checkBoxPhoneAngle"
+        android:layout_alignLeft="@+id/checkBoxPhoneAngle"
+        android:layout_alignStart="@+id/checkBoxPhoneAngle" />
+
 </RelativeLayout>

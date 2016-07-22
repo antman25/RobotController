@@ -20,7 +20,7 @@ public class BlueToothConnector {
     private BluetoothAdapter btAdapter = null;
     private BluetoothSocket btSocket = null;
     private StringBuilder recDataString = new StringBuilder();
-
+    private Boolean connected = false;
     private ConnectedThread mConnectedThread;
 
     // SPP UUID service - this should work for most devices
@@ -110,10 +110,12 @@ public class BlueToothConnector {
         }
         mConnectedThread = new ConnectedThread(btSocket);
         mConnectedThread.start();
-
+        connected = true;
         //I send a character when resuming.beginning transmission to check device is connected
         //If it is not an exception will be thrown in the write method and finish() will be called
-        mConnectedThread.write("\n");
+        byte []cmd = new byte[1];
+        cmd[0] = '\n';
+        writeData(cmd,1);
     }
 
     public void onPause()
@@ -122,6 +124,7 @@ public class BlueToothConnector {
         {
             //Don't leave Bluetooth sockets open when leaving activity
             btSocket.close();
+            connected = false;
         } catch (IOException e2) {
             //insert code to deal with this
         }
@@ -168,10 +171,12 @@ public class BlueToothConnector {
             // Keep looping to listen for received messages
             while (true) {
                 try {
-                    bytes = mmInStream.read(buffer);            //read bytes from input buffer
-                    String readMessage = new String(buffer, 0, bytes);
-                    // Send the obtained bytes to the UI Activity via handler
-                    bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
+                    if (connected == true) {
+                        bytes = mmInStream.read(buffer);            //read bytes from input buffer
+                        String readMessage = new String(buffer, 0, bytes);
+                        // Send the obtained bytes to the UI Activity via handler
+                        bluetoothIn.obtainMessage(handlerState, bytes, -1, readMessage).sendToTarget();
+                    }
                 } catch (IOException e) {
                     break;
                 }
@@ -180,10 +185,12 @@ public class BlueToothConnector {
 
         public void writeBytes(byte[] data, int n)
         {
-            try {
-                mmOutStream.write(data,0,n);
-            } catch (IOException e) {
-                e.printStackTrace();
+            if (connected == true) {
+                try {
+                    mmOutStream.write(data, 0, n);
+                } catch (IOException e) {
+                    //e.printStackTrace();
+                }
             }
         }
 
